@@ -81,8 +81,7 @@ export const login = async (req, res) => {
     res.json({
       id: userFound._id,
       username: userFound.nameSurname,
-      email: userFound.email,
-      rol: userFound.rol,
+      email: userFound.email
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -108,10 +107,14 @@ export const verifyToken = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-  res.cookie("token", "", {
-    httpOnly: true,
-    secure: true,
-    expires: new Date(0),
-  });
-  return res.sendStatus(200);
+  try {
+    const { token } = req.cookies;
+
+    if (token) {
+        res.clearCookie('token', {domain: 'localhost', path: '/'});
+    }
+    res.json({ message: "Sesion cerrada Exitosamente"});
+} catch (error) {
+ return res.status(500).json({ message: error.message });
+}
 };
