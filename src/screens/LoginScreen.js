@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import Axios from 'axios';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,6 +15,8 @@ const LoginScreen = () => {
     .then(response => {
       // Manejar la respuesta
       console.log('Respuesta del servidor:', response.data);
+
+      navigation.navigate("Home");
       // Aquí puedes guardar el token de autenticación en el estado de tu aplicación o en AsyncStorage
     })
     .catch(error => {
