@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Axios from 'axios';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -28,7 +29,11 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
+    <LinearGradient colors={['#2F3EE9', '#0065BF', '#296675']} style={{ flex: 1 }}>
     <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image source={require("../../assets/img/pngegg.png")} style={{ width: 180, height: 180 }} />
+      </View>
       <Text style={styles.title}>Inicio de sesión</Text>
       <TextInput
         style={styles.input}
@@ -49,6 +54,7 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.buttonText}>Iniciar sesión</Text>
       </TouchableOpacity>
     </View>
+    </LinearGradient>
   );
 };
 
@@ -57,13 +63,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
     paddingHorizontal: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'white'
   },
   input: {
     width: '100%',
@@ -73,6 +79,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 15,
     marginBottom: 15,
+    backgroundColor: '#ffffff',
   },
   loginButton: {
     width: '100%',
@@ -87,6 +94,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  imageContainer: {
+    marginBottom: 50,
+  }
 });
 
 export default LoginScreen;
