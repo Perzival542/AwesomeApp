@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Axios from 'axios';
 import { LinearGradient } from 'expo-linear-gradient';
+import Card from '../UI/components/Card';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -34,25 +35,30 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.imageContainer}>
         <Image source={require("../../assets/img/pngegg.png")} style={{ width: 180, height: 180 }} />
       </View>
-      <Text style={styles.title}>Inicio de sesión</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Correo electrónico"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Contraseña"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Iniciar sesión</Text>
-      </TouchableOpacity>
+      <Card>
+        <Text style={styles.title}>Inicio de sesión</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Correo electrónico"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Contraseña"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Iniciar sesión</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={navigation.navigate("Register")}>
+            <Text style={styles.signUpLink}>¿No tienes cuenta? Crea una aquí</Text>
+          </TouchableOpacity>
+      </Card>
     </View>
     </LinearGradient>
   );
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: 'white'
+    textAlign: 'center',
   },
   input: {
     width: '100%',
@@ -96,7 +102,14 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     marginBottom: 50,
-  }
+  },
+  signUpLink: {
+    marginTop: 20,
+    textAlign: 'center',
+    color: '#ffffff',
+    textDecorationLine: 'none',
+    fontWeight: 'bold'
+  },
 });
 
 export default LoginScreen;
