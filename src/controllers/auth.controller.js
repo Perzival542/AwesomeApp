@@ -6,7 +6,7 @@ import { createAccessToken } from "../libs/jwt.js";
 
 export const register = async (req, res) => {
   try {
-    const { name, surname, email, password } = req.body;
+    const { name, surname, birthDate, gender, email, password, phone, DNI, location, address } = req.body;
 
     const userFound = await User.findOne({ email });
 
@@ -22,8 +22,14 @@ export const register = async (req, res) => {
     const newUser = new User({
       name,
       surname,
+      birthDate,
+      gender,
       email,
       password: passwordHash,
+      phone,
+      DNI,
+      location,
+      address,
     });
 
     // saving the user in the database
